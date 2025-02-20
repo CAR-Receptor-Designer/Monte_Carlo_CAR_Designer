@@ -5,21 +5,26 @@ from rdkit import Chem
 from rdkit.Chem import AllChem
 from rdkit.Chem import rdMolTransforms
 
-# Define the target receptor (replace with your actual receptor)
-target_receptor = Chem.MolFromPDBFile("target_receptor.pdb")
+# --- Load the ensemble of receptor conformations ---
+receptor_ensemble =
+for i in range(1, 11):  # Example: Load 10 conformations
+    receptor = Chem.MolFromPDBFile(f"receptor_conformation_{i}.pdb")
+    receptor_ensemble.append(receptor)
 
 # Define the initial ligand (replace with a sensible starting point)
 initial_ligand = Chem.MolFromSmiles("CC(=O)Oc1ccccc1")
 
-# Define the scoring function (replace with your actual scoring function)
-def score_ligand(ligand, target):
+# --- Define the scoring function for ensemble docking ---
+def score_ligand_ensemble(ligand, ensemble):
     """
-    Calculates a score for the ligand based on its interaction with the target.
-    Lower scores are better.
+    Calculates the average score of the ligand across the receptor ensemble.
     """
-    # Example: Use the docking score from a docking program (e.g., Vina)
-    #... (code to run docking and extract the score)...
-    return docking_score
+    scores =
+    for receptor in ensemble:
+        # Example: Use the docking score from a docking program (e.g., Vina)
+        #... (code to run docking of ligand to receptor and extract the score)...
+        scores.append(docking_score)
+    return np.mean(scores)
 
 # Define the Monte Carlo parameters
 num_iterations = 1000
@@ -27,15 +32,15 @@ temperature = 1.0
 
 # Initialize the current ligand and score
 current_ligand = initial_ligand
-current_score = score_ligand(current_ligand, target_receptor)
+current_score = score_ligand_ensemble(current_ligand, receptor_ensemble)
 
-# Perform the Monte Carlo simulation
+# --- Perform the Monte Carlo simulation with ensemble docking ---
 for i in range(num_iterations):
     # Generate a new ligand by randomly modifying the current ligand
     new_ligand = modify_ligand(current_ligand)
 
-    # Calculate the score of the new ligand
-    new_score = score_ligand(new_ligand, target_receptor)
+    # Calculate the score of the new ligand across the ensemble
+    new_score = score_ligand_ensemble(new_ligand, receptor_ensemble)
 
     # Accept the new ligand based on the Metropolis criterion
     if new_score < current_score or random.random() < np.exp(-(new_score - current_score) / temperature):
