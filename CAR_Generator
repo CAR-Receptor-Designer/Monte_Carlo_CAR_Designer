@@ -7,20 +7,52 @@ conda activate rdkit-env
 conda install -c rdkit rdkit
 
 conda create -n rdkit-env python=3.12
+_______________________________________________
+#INSTALL NUMPY
 
+activate rdkit first then
+
+conda install numpy
+______________________________________________
+
+conda init
+
+source ~/.bashrc
 
 #
 # To activate this environment, use
 #
-#     $ conda activate rdkit-env
+conda activate rdkit-env
+
+conda install numpy
+
+[# To deactivate an active environment, use
 #
-# To deactivate an active environment, use
-#
-#     $ conda deactivate
+#     $ conda deactivate]
 
 
 CondaError: Run 'conda init' before 'conda activate'
+________________________________________
+Activate conda
+Activate rdkit
+import numpy
 
+sudo apt install graphicsmagick-imagemagick-compat
+
+export RDKIT_NO_DISPLAY=1
+python montecarlo.py
+___________________________________________
+conda install -c rdkit rdkit
+_____________________________
+
+conda install -c conda-forge freetype=2.5
+conda install -c conda-forge cairo=1.14.12
+___________________________________________
+conda init
+conda activate rdkit
+
+pip install rdkit
+___________________________________
 
 WITHOUT ENSEMBLE DOCKING
 
