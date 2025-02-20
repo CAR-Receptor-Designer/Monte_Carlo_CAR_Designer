@@ -1,0 +1,5 @@
+Download the target receptor as a pdb
+
+put it in the same directory as the montecarlo.py file
+
+add charges to this target receptor
